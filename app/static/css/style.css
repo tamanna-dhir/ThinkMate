@@ -7,8 +7,8 @@
   --bg:#111113;
   --panel:#1b1b1b;
   --muted:#9aa0a6;
-  --accent:#b8956a; /* elegant gold/bronze - sophisticated and chess-themed */
-  --accent-2:#8b7355; /* deeper bronze for variety */
+  --accent:#b8956a;
+  --accent-2:#8b7355;
   --text:#e9e9e9;
 }
 
@@ -23,10 +23,7 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 
-/* ---------------- NAVBAR ---------------- */
-/* ==========================
-   THINKMATE NAVBAR ENHANCED
-   ========================== */
+/* ================= NAVBAR ================= */
 
 .tm-navbar {
   background: rgba(10, 10, 10, 0.95);
@@ -41,6 +38,13 @@ body{
   top: 0;
   z-index: 1000;
   font-family: 'Poppins', sans-serif;
+}
+
+/* Transparent navbar ONLY on homepage */
+.homepage .tm-navbar {
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 /* Brand Section */
@@ -157,7 +161,7 @@ body{
   text-shadow: 0 0 8px rgba(184, 149, 106, 0.5);
 }
 
-/* Buttons (Right Side) */
+/* Buttons Right Side */
 .nav-right {
   display: flex;
   align-items: center;
@@ -197,38 +201,50 @@ body{
   box-shadow: 0 0 20px rgba(184, 149, 106, 0.8);
 }
 
+/* ================= HERO SECTION ================= */
 
-/* ---------------- HERO ---------------- */
-.hero{
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  background: url("../images/chess.jpg") no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+.hero {
+    position: relative;
+    height: calc(100vh - 70px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: transparent;
 }
 
-/* dark overlay */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+/* GIF background container */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
 }
 
-/* content in hero */
+/* GIF itself */
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Light overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1;
+}
+
+/* Front text */
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  color: var(--text);
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    color: var(--text);
 }
 
 .hero-content h1 {
@@ -255,7 +271,8 @@ body{
   gap: 14px;
 }
 
-/* ---------------- FEATURE STRIP ---------------- */
+/* ================= FEATURE STRIP ================= */
+
 .feature-strip{
   display:flex;
   justify-content:center;
@@ -272,8 +289,8 @@ body{
 .feature h3{margin:0 0 8px 0;color:#d4af37}
 .feature p{margin:0;color:var(--muted);font-size:14px}
 
-/* ---------------- FOOTER ---------------- */
-/* Enhanced Footer */
+/* ================= FOOTER ================= */
+
 .footer {
   background: var(--panel, #1b1b1b);
   color: #ccc;
@@ -298,6 +315,10 @@ body{
   flex: 1;
   min-width: 250px;
 }
+
+/* ...rest unchanged (Play & Watch pages)... */
+
+
 
 .footer-left h2 {
   color: var(--accent, #b8956a);

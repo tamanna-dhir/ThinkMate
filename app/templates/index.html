@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 
-<body>
+<body class="homepage">
   <!-- NAVBAR -->
   <nav class="tm-navbar">
   <div class="nav-left">
@@ -55,17 +55,24 @@
 
 
   <!-- HERO SECTION -->
-  <header class="hero">
+<header class="hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Play chess.<br><span>Improve your game. Have fun.</span></h1>
-      <p>Play online, train with puzzles, and learn from an AI-powered coach.</p>
-      <div class="buttons">
-        <a href="{{ url_for('main.play') }}" class="btn btn-primary">Get Started</a>
-        <a href="#" class="btn btn-outline">Learn More</a>
-      </div>
+
+    <div class="hero-bg">
+        <img src="{{ url_for('static', filename='images/chess_anim.gif') }}" alt="Chess Animation">
     </div>
-  </header>
+
+    <div class="hero-content">
+        <h1>Play chess.<br><span>Improve your game. Have fun.</span></h1>
+        <p>Play online, train with puzzles, and learn from an AI-powered coach.</p>
+        <div class="buttons">
+            <a href="{{ url_for('main.play') }}" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+    </div>
+</header>
+
+
 
   <!-- FEATURE STRIP -->
   <section class="feature-strip">
