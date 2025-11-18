@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+venv211/
+verv/
+
+# Data files
+data/processed/
+data/raw/
+data/run/
+
+# Database
+instance/
+*.db
+
+# Model weights
+*.pth
+*.pkl
+*.model
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large files
+*.exe
+*.zip
+*.tar.gz

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About – ThinkMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #ddd;
+      background: url('{{ url_for("static", filename="images/chess.jpg") }}') center/cover fixed no-repeat;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* dark overlay for readability */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: -1;
+    }
+
+    .about-hero {
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .about-hero h1 {
+      color: #b8956a;
+      font-size: 48px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(184, 149, 106, 0.3);
+    }
+
+    .about-hero p {
+      color: #bbb;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 80px 10%;
+    }
+
+    .section h2 {
+      color: #b8956a;
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(184, 149, 106, 0.2);
+    }
+
+    .section p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background-color: rgba(27, 27, 27, 0.85);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(184, 149, 106, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(184, 149, 106, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(184, 149, 106, 0.3);
+      border-color: rgba(184, 149, 106, 0.3);
+    }
+
+    .feature-card h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .team {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      background-color: rgba(27, 27, 27, 0.85);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(184, 149, 106, 0.1);
+      border: 1px solid rgba(184, 149, 106, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover {
+      box-shadow: 0 0 25px rgba(184, 149, 106, 0.3);
+      border-color: rgba(184, 149, 106, 0.3);
+    }
+
+    .team-member img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #b8956a;
+      box-shadow: 0 0 15px rgba(184, 149, 106, 0.3);
+    }
+
+    .team-member h4 {
+      color: #d4af37;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .team-member p {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    footer {
+      background-color: rgba(13, 13, 14, 0.9);
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 14px;
+      border-top: 1px solid rgba(184, 149, 106, 0.2);
+      margin-top: 50px;
+    }
+
+    /* Mission section enhancement */
+    .section p {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 36px;
+      }
+
+      .section {
+        padding: 60px 5%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="tm-navbar">
+    <div class="nav-left">
+      <a class="brand" href="{{ url_for('main.index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ThinkMate Logo" class="brand-logo">
+        <span class="brand-text">ThinkMate</span>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
+
+      <!-- Dropdown Menu for Play -->
+      <div class="dropdown">
+        <button class="nav-link dropdown-toggle">Play ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ url_for('main.play') }}">Quick Play</a>
+          <a href="{{ url_for('main.multiplayer') }}">Multiplayer</a>
+          <a href="{{ url_for('main.play_ai') }}">Player vs ThinkMate</a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link">Puzzles</a>
+      <a href="#" class="nav-link">Learn</a>
+      <a href="{{ url_for('main.watch') }}" class="nav-link">Watch</a>
+      <a href="{{ url_for('main.about') }}" class="nav-link active">About</a>
+    </div>
+
+    <div class="nav-right">
+      <button class="btn btn-outline">Log in</button>
+      <button class="btn btn-primary">Sign up</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <h1>About ThinkMate</h1>
+    <p>Your intelligent chess partner that learns, adapts, and grows with you.</p>
+  </section>
+
+  <!-- Mission -->
+  <section class="section">
+    <h2>Our Mission</h2>
+    <p>ThinkMate is built to make chess more intuitive and intelligent. Powered by AI, it analyzes your games, predicts optimal moves, and helps you improve your strategy like never before. Whether you're a beginner or an expert, ThinkMate aims to make your gameplay insightful, challenging, and rewarding.</p>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <h2>Core Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>AI Coach</h3>
+        <p>Receive move suggestions, explanations, and game insights powered by machine learning.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Multiplayer</h3>
+        <p>Challenge your friends or global players in real-time matches.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Puzzles</h3>
+        <p>Sharpen your tactical understanding through thousands of AI-selected puzzles.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Player vs ThinkMate</h3>
+        <p>Play against our AI engine, designed to simulate human-like strategies and adapt to your skill level.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <h2>Meet the Creator</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='images/creator.jpg') }}" alt="Creator">
+        <h4>Tamanna Dhir</h4>
+        <p>Founder & AI Developer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 ThinkMate. Built with ❤️ and AI.
+  </footer>
+
+</body>
+</html>

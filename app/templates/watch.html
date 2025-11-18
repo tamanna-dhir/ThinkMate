@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Chess Classics – ThinkMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    /* Additional styles for watch section */
+    .watch-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+      min-height: 100vh;
+    }
+
+    .watch-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .watch-subtitle {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #b0b0b0;
+      margin-bottom: 60px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .video-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-info {
+      padding: 20px;
+    }
+
+    .video-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .video-info p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .match-tag {
+      display: inline-block;
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .help-box {
+      background: rgba(255, 193, 7, 0.1);
+      border-left: 4px solid #ffc107;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 900px;
+      color: #e0e0e0;
+    }
+
+    .help-box h3 {
+      color: #ffc107;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .help-box ol {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+
+    .help-box code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #fbbf24;
+      font-family: 'Courier New', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .watch-title {
+        font-size: 2rem;
+      }
+
+      .watch-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="tm-navbar">
+    <div class="nav-left">
+      <a class="brand" href="{{ url_for('main.index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ThinkMate Logo" class="brand-logo">
+        <span class="brand-text">ThinkMate</span>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
+
+      <div class="dropdown">
+        <button class="nav-link dropdown-toggle">Play ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ url_for('main.play') }}">Quick Play</a>
+          <a href="{{ url_for('main.multiplayer') }}">Multiplayer</a>
+          <a href="{{ url_for('main.play_ai') }}">Player vs ThinkMate</a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link">Puzzles</a>
+      <a href="#" class="nav-link">Learn</a>
+      <a href="{{ url_for('main.watch') }}" class="nav-link active">Watch</a>
+    </div>
+
+    <div class="nav-right">
+      <button class="btn btn-outline">Log in</button>
+      <button class="btn btn-primary">Sign up</button>
+    </div>
+  </nav>
+
+  <!-- Watch section -->
+  <section class="watch-section">
+    <h1 class="watch-title">🎥 Watch Legendary Chess Matches</h1>
+    <p class="watch-subtitle">
+      Relive iconic games from world champions and AI engines like AlphaZero.
+    </p>
+
+    <div class="video-grid">
+      <!-- Video 1: Magnus vs Hikaru -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" 
+            title="Magnus Carlsen vs Hikaru Nakamura"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>Magnus Carlsen vs Hikaru Nakamura</h3>
+          <p>Epic battles between two of the world's best players. Their rivalry has produced countless memorable games in both classical and rapid formats.</p>
+          <span class="match-tag">SUPER GM</span>
+        </div>
+      </div>
+
+      <!-- Video 2: Kasparov vs Deep Blue -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" 
+            title="Kasparov vs Deep Blue Documentary"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>Kasparov vs Deep Blue (1997)</h3>
+          <p>The historic match where IBM's supercomputer defeated the world champion, marking a pivotal moment in the history of artificial intelligence.</p>
+          <span class="match-tag">HISTORIC</span>
+        </div>
+      </div>
+
+      <!-- Video 3: AlphaZero -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" 
+            title="AlphaZero Chess Analysis"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>AlphaZero vs Stockfish</h3>
+          <p>DeepMind's revolutionary AI taught itself chess in hours and defeated the world's strongest engine with creative, human-like play.</p>
+          <span class="match-tag">AI BATTLE</span>
+        </div>
+      </div>
+
+      <!-- Video 4: World Championship -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_4" 
+            title="World Championship Highlights"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>World Championship Classics</h3>
+          <p>The most dramatic moments from World Championship matches where the greatest players compete for chess's ultimate title.</p>
+          <span class="match-tag">CHAMPIONSHIP</span>
+        </div>
+      </div>
+
+      <!-- Video 5: Bobby Fischer -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_5" 
+            title="Bobby Fischer Greatest Games"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>Bobby Fischer's Brilliancies</h3>
+          <p>Witness the genius of Bobby Fischer through his most memorable games, combinations, and tournament performances.</p>
+          <span class="match-tag">LEGEND</span>
+        </div>
+      </div>
+
+      <!-- Video 6: Recent Tournaments -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_6" 
+            title="Recent Chess Tournament Highlights"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>Modern Tournament Action</h3>
+          <p>Recent games from top tournaments featuring today's elite players including Gukesh, Pragg, and the next generation of stars.</p>
+          <span class="match-tag">RECENT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Box -->
+    <div class="help-box">
+      <h3>⚠️ Videos Not Showing? Here's How to Fix It:</h3>
+      <ol>
+        <li><strong>Find Your Videos:</strong> Go to YouTube and search for:
+          <ul style="margin-top: 10px;">
+            <li>"Magnus Carlsen Hikaru Nakamura Chess.com"</li>
+            <li>"Kasparov Deep Blue documentary"</li>
+            <li>"AlphaZero Stockfish DeepMind"</li>
+            <li>"World Chess Championship highlights"</li>
+          </ul>
+        </li>
+        <li style="margin-top: 15px;"><strong>Get the Video ID:</strong> When you find a video, look at the URL:<br>
+          <code>youtube.com/watch?v=<strong>abc123xyz</strong></code><br>
+          The part after <code>v=</code> is your VIDEO_ID
+        </li>
+        <li style="margin-top: 15px;"><strong>Replace in HTML:</strong> Change <code>YOUR_VIDEO_ID_1</code> to your actual video ID</li>
+        <li style="margin-top: 15px;"><strong>Recommended Channels:</strong> Chess.com, chess24, ChessBase, GothamChess, Hikaru's channel, and agadmator</li>
+      </ol>
+    </div>
+
+  </section>
+
+  <script>
+    // Add any JavaScript for dropdown menus if needed
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.display = 'none';
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ThinkMate – Player vs AI</title>
+
+  <!-- ✅ Chessboard.js + Chess.js -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body.play-page {
+      font-family: 'Poppins', sans-serif;
+      background: url("{{ url_for('static', filename='images/chess.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #b8956a;
+      text-shadow: 0 0 15px rgba(184, 149, 106, 0.3);
+    }
+
+    #board {
+      width: 500px;
+      margin: 20px auto;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #b8956a, #d4af37);
+      color: #111;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s ease;
+      box-shadow: 0 0 12px rgba(184, 149, 106, 0.3);
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #a0825c, #c4a037);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(184, 149, 106, 0.5);
+    }
+
+    .color-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    footer.footer {
+      margin-top: 60px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #bbb;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(184, 149, 106, 0.2);
+    }
+
+    .card {
+      background: rgba(17, 17, 17, 0.85);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(184, 149, 106, 0.2);
+      display: inline-block;
+      margin-top: 40px;
+      border: 1px solid rgba(184, 149, 106, 0.1);
+    }
+
+    .status {
+      color: #e9e9e9;
+      font-weight: 500;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    @media (max-width: 600px) {
+      #board {
+        width: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body class="play-page">
+  <!-- NAVBAR -->
+  <nav class="tm-navbar">
+    <div class="nav-left">
+      <a class="brand" href="{{ url_for('main.index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ThinkMate Logo" class="brand-logo">
+        <span class="brand-text">ThinkMate</span>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
+
+      <div class="dropdown">
+        <button class="nav-link dropdown-toggle">Play ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ url_for('main.play') }}">Quick Play</a>
+          <a href="{{ url_for('main.multiplayer') }}">Multiplayer</a>
+          <a href="{{ url_for('main.play_ai') }}" class="active">Player vs ThinkMate</a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link">Puzzles</a>
+      <a href="#" class="nav-link">Learn</a>
+      <a href="{{ url_for('main.watch') }}" class="nav-link">Watch</a>
+    </div>
+
+    <div class="nav-right">
+      <button class="btn btn-outline">Log in</button>
+      <button class="btn btn-primary">Sign up</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="play-container">
+    <!-- Color Choice -->
+    <section id="color-choice" class="choose-color card">
+      <h2>Choose Your Side</h2>
+      <div class="color-buttons">
+        <button id="whiteBtn" class="btn">Play as White</button>
+        <button id="blackBtn" class="btn">Play as Black</button>
+      </div>
+    </section>
+
+    <!-- Game Area -->
+    <section id="board-container" class="board-panel card" style="display:none;">
+      <h2>Play Against ThinkMate</h2>
+      <div id="board"></div>
+      <p id="status" class="status"></p>
+      <button class="btn" id="restartBtn" style="margin-top:15px;">Restart Game</button>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 ThinkMate | AI Match Mode</p>
+  </footer>
+
+  <!-- ✅ Use external JS (not inline) -->
+  <script src="{{ url_for('static', filename='js/main_ai.js') }}"></script>
+
+</body>
+</html>
