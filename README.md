@@ -4,7 +4,7 @@ Your mind's best mate on the board
 
 An intelligent chess platform that transforms how players learn and improve, combining AI-powered gameplay with personalized coaching and strategic insights.
 
-🎯 Overview
+ Overview
 ThinkMate is more than just a chess engine—it's an intelligent mentor designed to help players grow their skills through personalized, AI-driven guidance. Built with a custom Convolutional Neural Network (CNN), ThinkMate serves as both a challenging opponent and an insightful coach, analyzing your gameplay and providing strategic recommendations tailored to your skill level.
 The Problem We Solve
 While chess is immensely popular worldwide, most players face a significant learning gap after mastering the basics. Traditional platforms often:
@@ -16,17 +16,17 @@ Fail to bridge the gap between theoretical knowledge and practical gameplay
 
 ThinkMate addresses these challenges by offering an affordable, interactive learning platform that grows with you—making systematic improvement accessible without requiring personal coaching or the ability to decipher complex engine analysis.
 
-✨ Key Features
-🤖 Adaptive AI Opponent
+ Key Features
+1. Adaptive AI Opponent
 Challenge our CNN-powered engine that intelligently adjusts its playing strength to match your skill level, ensuring a consistently engaging and appropriate challenge.
-📊 Real-Time Analysis
+2. Real-Time Analysis
 Get instant feedback on your moves with strategic explanations you can actually understand and apply to your game.
-🎓 Personalized Learning
+3. Personalized Learning
 Receive guidance tailored to your current skill level, helping you improve systematically without feeling overwhelmed.
-💡 Strategic Insights
+4. Strategic Insights
 Understand the reasoning behind every move, transforming each game into a valuable learning experience.
 
-🛠️ Technology Stack
+ Technology Stack
 Frontend
 
 HTML/CSS/JavaScript - Core web technologies
@@ -44,7 +44,7 @@ Custom CNN (ChessNet) - Convolutional Neural Network trained on thousands of che
 Pre-trained Model - Leverages saved model weights (chess_cnn.pth) for immediate chess intelligence
 
 
-🏗️ System Architecture
+ System Architecture
 ┌─────────────────────────────────────────────────┐
 │                   FRONTEND                       │
 │         (HTML, CSS, chessboard.js)              │
